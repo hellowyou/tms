@@ -12,8 +12,7 @@ import Tenant from '../../models/tenant';
 
 const mutation = {
   addTenant: {
-    name: 'addTenant',
-    description: 'Create a Tenant',
+    description: 'Create a Tenant.',
     type: TenantType,
     args: {
       input: {
@@ -32,7 +31,7 @@ const mutation = {
   },
   updateTenant: {
     type: TenantType,
-    description: 'Update a Tenant',
+    description: 'Update a Tenant.',
     args: {
       id: { type: new GraphQLNonNull(GraphQLID) },
       input: {

@@ -7,24 +7,42 @@ import {
 
 const TenantType = new GraphQLObjectType({
   name: 'Tenant',
+  description: "Tenant's output shape.",
   fields: () => ({
-    id: { type: GraphQLID },
-    firstName: { type: GraphQLString },
-    lastName: { type: GraphQLString },
-    createdAt: { type: GraphQLString },
-    updatedAt: { type: GraphQLString },
+    id: {
+      type: GraphQLID,
+      description: "Tenant's ID."
+    },
+    firstName: {
+      type: GraphQLString,
+      description: "Tenant's First Name."
+    },
+    lastName: {
+      type: GraphQLString,
+      description: "Tenant's Last Name."
+    },
+    createdAt: {
+      type: GraphQLString,
+      description: "Created date."
+    },
+    updatedAt: {
+      type: GraphQLString,
+      description: "Updated date."
+    },
   }),
 });
 
 const TenantInputType = new GraphQLInputObjectType({
   name: 'TenantInput',
-  description: 'Input tenant payload',
+  description: "Tenant's input shape.",
   fields: () => ({
     firstName: {
       type: GraphQLString,
+      description: "Tenant's First Name."
     },
     lastName: {
       type: GraphQLString,
+      description: "Tenant's Last Name."
     },
   }),
 });
