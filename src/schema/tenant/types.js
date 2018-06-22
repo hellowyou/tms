@@ -5,8 +5,8 @@ import {
   GraphQLInputObjectType
 } from 'graphql';
 
-const TenantType = new GraphQLObjectType({
-  name: 'Tenant',
+const TenantPayloadType = new GraphQLObjectType({
+  name: 'TenantPayload',
   description: "Tenant's output shape.",
   fields: () => ({
     id: {
@@ -48,6 +48,6 @@ const TenantInputType = new GraphQLInputObjectType({
 });
 
 export {
-  TenantType,
+  TenantPayloadType,
   TenantInputType
 }

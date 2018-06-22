@@ -5,7 +5,7 @@ import {
 } from 'graphql';
 
 import {
-  TenantType,
+  TenantPayloadType,
   TenantInputType
 } from './types';
 import Tenant from '../../models/tenant';
@@ -13,7 +13,7 @@ import Tenant from '../../models/tenant';
 const mutation = {
   addTenant: {
     description: 'Create a Tenant.',
-    type: TenantType,
+    type: TenantPayloadType,
     args: {
       input: {
         type: new GraphQLNonNull(TenantInputType),
@@ -30,7 +30,7 @@ const mutation = {
     }
   },
   updateTenant: {
-    type: TenantType,
+    type: TenantPayloadType,
     description: 'Update a Tenant.',
     args: {
       id: { type: new GraphQLNonNull(GraphQLID) },
@@ -47,7 +47,7 @@ const mutation = {
     },
   },
   deleteTenant: {
-    type: TenantType,
+    type: TenantPayloadType,
     description: `
     Delete a Tenant.
     Returns null when no record is found.

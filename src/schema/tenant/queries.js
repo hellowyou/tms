@@ -5,12 +5,12 @@ import {
 } from 'graphql';
 import _ from 'lodash';
 
-import { TenantType } from './types';
+import { TenantPayloadType } from './types';
 import Tenant from '../../models/tenant';
 
 const query = {
   tenant: {
-    type: TenantType,
+    type: TenantPayloadType,
     args: { id: { type: new GraphQLNonNull( GraphQLID ) } },
     async resolve(parent, { id }) {
       try {
@@ -24,7 +24,7 @@ const query = {
     }
   },
   tenants: {
-    type: new GraphQLList( TenantType ),
+    type: new GraphQLList( TenantPayloadType ),
     async resolve(parent, args) {
       try {
         let tenants = await Tenant.find();
