@@ -1,10 +1,11 @@
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLID
+  GraphQLID,
+  GraphQLInputObjectType
 } from 'graphql';
 
-export const TenantType = new GraphQLObjectType({
+const TenantType = new GraphQLObjectType({
   name: 'Tenant',
   fields: () => ({
     id: { type: GraphQLID },
@@ -12,5 +13,23 @@ export const TenantType = new GraphQLObjectType({
     lastName: { type: GraphQLString },
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString },
-  })
+  }),
 });
+
+const TenantInputType = new GraphQLInputObjectType({
+  name: 'TenantInput',
+  description: 'Input tenant payload',
+  fields: () => ({
+    firstName: {
+      type: GraphQLString,
+    },
+    lastName: {
+      type: GraphQLString,
+    },
+  }),
+});
+
+export {
+  TenantType,
+  TenantInputType
+}
