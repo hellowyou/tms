@@ -1,6 +1,7 @@
 import {
   GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLList,
 } from 'graphql';
 import _ from 'lodash';
 
@@ -19,6 +20,18 @@ const query = {
       } catch(e) {
         console.log({e});
         return new Error("Tenant not found");
+      }
+    }
+  },
+  tenants: {
+    type: new GraphQLList( TenantType ),
+    async resolve(parent, args) {
+      try {
+        let tenants = await Tenant.find();
+        return tenants;
+      } catch(e) {
+        console.log({e});
+        return new Error("Unable to fetch tenants");
       }
     }
   }
