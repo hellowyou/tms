@@ -16,6 +16,11 @@ app.use('/graphql', graphqlHTTP({
 
 app.listen(PORT, () => {
   let m = `Server running at port ${PORT}`;
-  notifer.notify(m);
+
+  notifer.notify({
+    title: "Server Status",
+    message: m
+  });
+
   console.log(m);
 });
