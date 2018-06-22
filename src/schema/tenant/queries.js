@@ -5,20 +5,21 @@ import {
 import _ from 'lodash';
 
 import { TenantType } from './types';
-
-const tenantData = [
-  {id: "1", firstName: 'John', lastName: 'Doe'},
-  {id: "2", firstName: 'Emly', lastName: 'Dawson'},
-  {id: "3", firstName: 'Jake', lastName: 'Lake'},
-];
+import Tenant from '../../models/tenant';
 
 const query = {
   tenant: {
     type: TenantType,
     args: { id: { type: new GraphQLNonNull( GraphQLID ) } },
-    resolve(parent, { id }) {
+    async resolve(parent, { id }) {
+      try {
+        let tenant = await Tenant.findById( id );
 
-      return _.find(tenantData, { id });
+        return tenant;
+      } catch(e) {
+        console.log({e});
+        return new Error("Tenant not found");
+      }
     }
   }
 };
