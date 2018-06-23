@@ -1,11 +1,15 @@
 import mongoose from 'mongoose';
 
-const connect = () => {
+const connect = async () => {
   const db = mongoose.connection;
-  db.on('error', (err) => console.log(`An Erro has occured: ${err}.`));
-  db.once('open', (err) => console.log(`MongoDB Ready.`));
+  db.on('error', (err) => console.error(`[mongoose]: ${err}.`));
+  db.once('open', (err) => console.log(`[mongoose]: MongoDB ready.`));
 
-  mongoose.connect('mongodb://localhost/tms');
+  try {
+    await mongoose.connect('mongodb://localhost/tms');
+  } catch(e) {
+    console.error(`[mongoose]: ${e.message}`);
+  }
 };
 
 export default connect;
