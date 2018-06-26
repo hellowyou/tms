@@ -30,20 +30,29 @@ const episodeSchema = Schema({
   }
 }, {timestamps: true});
 
-episodeSchema.methods.addTenant = function(tenantId, cb) {
+episodeSchema.methods = {
+  /**
+   * Adds a tenant for the episode.
+   * Returns the episode on resolve, error on reject.
+   *
+   * @param   {String}    tenantId The id of the tenant.
+   * @return  {Promise}
+   */
+  addTenant(tenantId) {
 
-  return new Promise((resolve, reject) => {
-    try {
-      this._tenants.push(tenantId);
-      resolve(this);
-    } catch(e) {
-      console.log('Episode::addTenant Error:', e.message);
-      reject(e);
-    }
-  });
+    return new Promise((resolve, reject) => {
+      try {
+        this._tenants.push(tenantId);
+        resolve(this);
+      } catch(e) {
+        console.log('Episode::addTenant Error:', e.message);
+        reject(e);
+      }
+    });
+  }
 }
 
-episodeSchema.virtual('tenants').get(function(){
+episodeSchema.virtual('tenants').get(function() {
   return Tenant.find().where('_id').in(this._tenants).exec();
 });
 
