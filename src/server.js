@@ -15,7 +15,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 app.listen(PORT, () => {
-  let m = `Server running at port ${PORT} on ${process.env.NODE_ENV} environment.`;
+  let m = `Server running at port ${PORT} on ${process.env.NODE_ENV || 'development'} environment.`;
 
   notifer.notify({
     title: "Server Status",
