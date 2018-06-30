@@ -14,6 +14,8 @@ app.use('/graphql', graphqlHTTP({
 	graphiql: process.env.NODE_ENV !== 'production'
 }));
 
+app.get('/', (req, res) => res.redirect('/graphql'));
+
 app.listen(PORT, () => {
   let m = `Server running at port ${PORT} on ${process.env.NODE_ENV || 'development'} environment.`;
 
